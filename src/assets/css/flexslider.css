@@ -36,13 +36,13 @@ html[xmlns] .slides {display: block;}
 
 /* FlexSlider Default Theme
 *********************************/
-.flexslider {margin: 0 0 0px; background: ; position: relative; -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; ,0,0,.2); zoom: 1;}
+.flexslider {margin: 0 0 0px; background: relative ; position: relative; -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; zoom: 1;}
 .flex-viewport {max-height:1500px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;}
 .loading .flex-viewport {max-height: 300px;}
 .flexslider .slides {zoom: 1;}
 .carousel li {margin-right: 5px}
 /* Direction Nav */
-.flex-direction-nav a {width: 30px; height: 30px; margin: -20px 0 0; display: block; background: url(../images/bg_direction_nav.png) no-repeat 0 0; position: absolute; top: 50%; cursor: pointer; text-indent: -9999px; opacity: 0; -webkit-transition: all .3s ease;}
+.flex-direction-nav a {width: 30px; height: 30px; margin: -20px 0 0; display: block; background: url(../images/back.png.png) no-repeat 0 0; position: absolute; top: 50%; cursor: pointer; text-indent: -9999px; opacity: 0; -webkit-transition: all .3s ease;}
 .flex-direction-nav .flex-next {background-position: 100% 0; right:px; }
 .flex-direction-nav .flex-prev {left: px;}
 .flexslider:hover .flex-next {opacity: 0.8; right: 5px;}
@@ -65,7 +65,6 @@ html[xmlns] .slides {display: block;}
 /*----flexslider1---*/
 
 .flexslider1 ol.flex-control-nav{
-	width: ;
 	position: absolute;
 	bottom: -49px;
 	text-align: center;

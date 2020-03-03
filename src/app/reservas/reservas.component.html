@@ -1,0 +1,12 @@
+<h2>Mis Reservaciones</h2>
+<ul>
+  <li *ngFor="let reserva of reservas"
+    [class.selected]="reserva === selectedReserva"
+    (click)="onSelect(reserva)">
+    <span >{{reserva.id}}</span> {{reserva.nombre}} {{reserva.correo}} {{reserva.fechai}} {{reserva.fechas}} {{reserva.canthab}}
+  </li>
+</ul>
+
+<app-detalles-reservacion [reserva]="selectedReserva"></app-detalles-reservacion>
+<app-mensajes></app-mensajes>
+
