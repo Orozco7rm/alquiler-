@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Reserva} from './reserva';
-import {Reservas} from './reservas';
 import { Observable, of, Subject } from 'rxjs';
 import {MensajeService} from './mensajes.service';
 import { AngularFirestore } from 'angularfire2/firestore';
-import {map} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -16,10 +15,13 @@ export class ReservaService {
   reservas: Observable<Reserva[]>;
   private reservaciones : Reserva[ ] = [];
 
+  private log(message: string) {
+    this.mensajeServicio.add(`Mensaje de Reservaciones: ${message}`);
+  }
+
   constructor(private mensajeServicio : MensajeService, private db : AngularFirestore) { }
 
-  getReservaciones(){
-    
+  getReservaciones(){    
     this.db.collection('reservaciones')
     .snapshotChanges()
     .pipe(
@@ -35,13 +37,36 @@ export class ReservaService {
            fechas: data.fechas
           };
        });
-     })
+     }) 
+     ,tap(_ => this.log('Reservas encontradas')),
+     catchError( this.handleError <Reserva[]>('getReservaciones', []))
     ).subscribe((reserva : Reserva []) =>{
       this.reservaciones = reserva;
       this.cargaReservas.next([...this.reservaciones]);
     } );
-    
-    this.mensajeServicio.add('Mensaje de Reservaciones: Buscando reservacion');
-
+   this.mensajeServicio.add('Mensaje de Reservaciones: Buscando reservacion');
   }
+
+  private handleError<Reserva> (operation = 'operation', result?: Reserva) {
+    return (error: any): Observable<Reserva> => {
+  
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+  
+      // TODO: better job of transforming error for user consumption
+     this.log(`${operation} failed: ${error.message}`);
+  
+      // Let the app keep running by returning an empty result.
+      return of(result as Reserva);
+    };
+  }
+
+   insertarEnBaseD(reserva : Reserva){
+    this.db.collection('reservaciones').add(reserva);  
+    this.mensajeServicio.add('Mensaje de Reservaciones: Reservacion Ingresada');
+  }
+   eliminarEnBaseD(reserva: Reserva){
+this.db.collection('reservaciones').doc(reserva.id).delete();
+   }
+
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {environment} from '../environments/environment';
@@ -24,7 +24,8 @@ import { MensajesComponent } from './mensajes/mensajes.component';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

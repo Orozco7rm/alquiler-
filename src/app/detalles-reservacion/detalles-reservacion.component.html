@@ -1,13 +1,21 @@
 <div *ngIf="reserva">
 
     <h2> Detalles {{reserva.nombre | uppercase}}</h2>
-    <div><span>id: </span>{{reserva.id}}</div>
     <div>
       <label>nombre:
         <input [(ngModel)]="reserva.nombre" placeholder="name"/>
       </label>
       <label>correo:
         <input [(ngModel)]="reserva.correo" placeholder="correo"/>
+      </label>
+      <label>fecha ingreso:
+        <input [(ngModel)]="reserva.fechai" placeholder="fechai"/>
+      </label>
+      <label>fecha salida:
+        <input [(ngModel)]="reserva.fechas" placeholder="fechas"/>
+      </label>
+      <label>Numero Habitaciones:
+        <input [(ngModel)]="reserva.numHab" placeholder="numHab"/>
       </label>
     </div>
   

@@ -1,10 +1,38 @@
+<h1>Reservar</h1>
+<div>
+  <form [formGroup]="formGroup" (submit)="add()" >
+    <label>Nombre:
+      <input  formControlName="nombre"/>
+    </label>
+    <label>Correo:
+      <input  formControlName="correo"/>
+    </label>
+    <label>Fecha de Ingreso:
+      <input  formControlName="fechai" type="date"/>
+    </label>
+    <label>Fecha de Salida:
+      <input  formControlName="fechas"  type="date"/>
+    </label>
+    <label>Habitaciones:
+      <input formControlName="numHab"/>
+    </label>
+    <button (click)="add()" [disabled]="formGroup.invalid">
+      Reservar
+    </button>
+  </form>
+ </div>
+
 <h2>Mis Reservaciones</h2>
-<ul>
+<ul >
   <li *ngFor="let reserva of reservas"
     [class.selected]="reserva === selectedReserva"
     (click)="onSelect(reserva)">
-    <span >{{reserva.id}}</span> {{reserva.nombre}} {{reserva.correo}} {{reserva.fechai}} {{reserva.fechas}} {{reserva.canthab}}
+    <span >{{reserva.nombre}}  {{reserva.correo}}
+     {{reserva.fechai}} {{reserva.fechas}} {{reserva.numHab}}</span>
+     <button  title="Eliminar Reserva"
+      (click)="delete(reserva)"> Eliminar </button>
   </li>
+  
 </ul>
 
 <app-detalles-reservacion [reserva]="selectedReserva"></app-detalles-reservacion>
